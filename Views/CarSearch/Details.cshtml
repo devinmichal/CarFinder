@@ -1,0 +1,328 @@
+﻿@model carfinder.Models.Car
+
+@{
+    ViewBag.Title = "Details";
+}
+
+   
+
+
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-4">
+            <a href="@ViewBag.imageUrl"><img class="img-responsive" src="@ViewBag.imageUrl" /></a> 
+        </div>
+        </div>
+<div class="row">
+    @if(ViewBag.recalls.Count > 0) { 
+        <div class="col-sm-6">
+            <div>
+                <h4 style="text-align:center">Car Details</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Make:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.make)
+                    </dd>
+
+                    <dt>
+                        Model:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.model_name)
+                    </dd>
+
+                    <dt>
+                        Trim:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.model_trim)
+                    </dd>
+
+                    <dt>
+                        Year:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.model_year)
+                    </dd>
+
+                    <dt>
+                        Body Style:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.body_style)
+                    </dd>
+
+                    <dt>
+                        Engine Size:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.engine_num_cyl)
+                    </dd>
+
+
+
+                    <dt>
+                        Feul Type:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.engine_fuel)
+                    </dd>
+
+
+
+                    <dt>
+                        Drive Type:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.drive_type)
+                    </dd>
+
+                    <dt>
+                        Transmission Type:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.transmission_type)
+                    </dd>
+
+                    <dt>
+                        Seats:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.seats)
+                    </dd>
+
+                    <dt>
+                       Doors:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.doors)
+                    </dd>
+
+
+
+                    <dt>
+                        Feul Capacity(Liters):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.fuel_capacity_l)
+                    </dd>
+
+
+
+
+                </dl>
+            </div>
+        </div>
+
+
+ 
+            <div class="col-sm-6">
+                <h4 style="text-align:center">Recalls</h4>
+                <hr />
+                <div>
+
+                    <ul class="nav nav-tabs">
+                        @{var cnt = 1;
+                            foreach (var num in ViewBag.recalls.Results)
+                            {
+
+
+                                <li class=""><a data-toggle="tab" href="#recall-@cnt">Recall @cnt </a></li>
+                                { cnt++; }
+                            } }
+                    </ul>
+                    <div class="tab-content">
+                        @{ var cnt2 = 1;
+                            foreach (var recalls in ViewBag.recalls.Results)
+                            {
+
+                                <div id="recall-@cnt2" class="tab-pane fade ">
+                                    <dl>
+                                        <dt>Manufacturer:</dt>
+                                        <dd>@recalls.Manufacturer</dd>
+
+                                        <dt>NHTSACampaignNumber:</dt>
+                                        <dd>@recalls.NHTSACampaignNumber</dd>
+
+                                        <dt>ReportReceivedDate: </dt>
+                                        <dd>@recalls.ReportReceivedDate</dd>
+
+                                        <dt>Component: </dt>
+                                        <dd>@recalls.Component</dd>
+
+                                        <dt>Summary: </dt>
+                                        <dd>@recalls.Summary</dd>
+
+                                        <dt>Remedy: </dt>
+                                        <dd>@recalls.Remedy</dd>
+
+                                        <dt>Notes: </dt>
+                                        <dd>@recalls.Notes</dd>
+
+                                       
+                                    </dl>
+                                </div>
+
+
+                                { cnt2++; }
+
+
+
+                            }   }
+                    </div>
+                </div>
+            </div>
+
+
+                            }
+
+                            else
+                            {
+
+
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <div>
+                                        <h4 style="text-align:center">Car Details</h4>
+                                        <hr />
+                                        <dl class="dl-horizontal">
+                                            <dt>
+                                                Make:
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.make)
+                                            </dd>
+
+                                            <dt>
+                                                Model:
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.model_name)
+                                            </dd>
+
+                                            <dt>
+                                                Trim:
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.model_trim)
+                                            </dd>
+
+                                            <dt>
+                                                Year:
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.model_year)
+                                            </dd>
+
+                                            <dt>
+                                                Body Style:
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.body_style)
+                                            </dd>
+
+                                            <dt>
+                                                Engine Size:
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.engine_num_cyl)
+                                            </dd>
+
+
+
+                                            <dt>
+                                                Feul Type:
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.engine_fuel)
+                                            </dd>
+
+
+
+                                            <dt>
+                                                Drive Type:
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.drive_type)
+                                            </dd>
+
+                                            <dt>
+                                                Transmission Type:
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.transmission_type)
+                                            </dd>
+
+                                            <dt>
+                                                Seats:
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.seats)
+                                            </dd>
+
+                                            <dt>
+                                                Doors:
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.doors)
+                                            </dd>
+
+
+
+                                            <dt>
+                                                Feul Capacity(Liters):
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.fuel_capacity_l)
+                                            </dd>
+
+
+
+
+                                        </dl>
+                                    </div>
+                                </div>
+
+                            }
+
+    </div>
+
+    
+    
+
+
+
+
+<p>
+
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@Html.Partial("_Footer")
+
+

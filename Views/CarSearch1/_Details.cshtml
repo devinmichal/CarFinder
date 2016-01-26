@@ -1,0 +1,199 @@
+﻿@model carfinder.Models.Car
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container">
+    <div class=" row">
+        <div class="col-sm-6">
+            <p>
+
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+        <div class="col-sm-6">
+            @using (Html.BeginForm("Index","CarSearch", FormMethod.Get))
+            {
+                @Html.TextBox("filter",null,new { @type="search" })
+            }
+        </div>
+
+    </div>
+  
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="img-responsive" src="@ViewBag.imageUrl" />
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <h4>Car Details</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Make:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.make)
+                    </dd>
+
+                    <dt>
+                        Model:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.model_name)
+                    </dd>
+
+                    <dt>
+                        Trim:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.model_trim)
+                    </dd>
+
+                    <dt>
+                        Year:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.model_year)
+                    </dd>
+
+                    <dt>
+                        Body Style:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.body_style)
+                    </dd>
+
+                    <dt>
+                        Engine Size:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.engine_num_cyl)
+                    </dd>
+
+
+
+                    <dt>
+                        Feul Type:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.engine_fuel)
+                    </dd>
+
+
+
+                    <dt>
+                        Drive Type:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.drive_type)
+                    </dd>
+
+                    <dt>
+                        Transmission Type:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.transmission_type)
+                    </dd>
+
+                    <dt>
+                        Seats:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.seats)
+                    </dd>
+
+                    <dt>
+                       Doors:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.doors)
+                    </dd>
+
+
+
+                    <dt>
+                        Feul Capacity(Liters):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.fuel_capacity_l)
+                    </dd>
+
+
+
+
+                </dl>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Recalls</h3>
+            <hr />
+            <div>
+                @foreach (var recalls in ViewBag.recalls.Results)
+                {
+                    <dl>
+                        <dt>Manufacturer:</dt>
+                        <dd>@recalls.Manufacturer</dd>
+
+                        <dt>NHTSACampaignNumber:</dt>
+                        <dd>@recalls.NHTSACampaignNumber</dd>
+
+                        <dt>ReportReceivedDate: </dt>
+                        <dd>@recalls.ReportReceivedDate</dd>
+
+                        <dt>Component: </dt>
+                        <dd>@recalls.Component</dd>
+
+                        <dt>Summary: </dt>
+                        <dd>@recalls.Summary</dd>
+
+                        <dt>Remedy: </dt>
+                        <dd>@recalls.Remedy</dd>
+
+                        <dt>Notes: </dt>
+                        <dd>@recalls.Notes</dd>
+
+                        <dt>ModelYear: </dt>
+                        <dd>@recalls.ModelYear</dd>
+
+                        <dt>Make: </dt>
+                        <dd>@recalls.Make</dd>
+
+                        <dt>Model: </dt>
+                        <dd>@recalls.Model</dd>
+                    </dl>
+                    <hr />
+
+
+
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+    <p>
+
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+</div>
+

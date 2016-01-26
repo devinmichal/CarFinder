@@ -1,0 +1,12 @@
+﻿.sidebarnavpic {
+  background-image: url('img/mercedes.jpg');
+  background-position:right;
+  height: 125px;
+}
+
+.sidebarnavparagraph {
+    padding: 50px;
+}
+
+
+

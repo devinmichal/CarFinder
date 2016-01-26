@@ -1,0 +1,221 @@
+﻿@model IEnumerable<carfinder.Models.Car>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div id="wrapper">
+
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        @using (Html.BeginForm("Index", "CarSearch", FormMethod.Get, new { @id = "form" }))
+        {
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand sidebarnavpic">
+                    <p class="sidebarnavparagraph" style="color:white">
+                        Find Your Car
+                    </p>
+                </li>
+                
+                <li>
+                   
+                    @Html.DropDownList("year", null, "Select Year", new { @id = "year", @class= "form-control" }) <br />
+                </li>
+                @if (ViewBag.make != null)
+                {
+                <li>
+                    @Html.DropDownList("make", null, "Select Make", new { @id = "make", @class = "form-control" }) <br />
+                </li>
+                }
+                @if (ViewBag.model != null)
+                {
+                <li>
+                    @Html.DropDownList("model", null, " Select Model", new { @id = "model", @class = "form-control" }) <br />
+                </li>
+                }
+                @if (ViewBag.trim != null)
+                {
+                <li>
+                    @Html.DropDownList("trim", null, "Select Trim", new { @id = "trim", @class = "form-control" })
+                </li>
+                }
+            </ul>
+
+        }
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+
+
+
+
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="navbar navbar-default navbar-fixed-top topnav">
+                <div class="container topnav">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Carfinder", "Index", "Home", new { area = "" }, new { @class = "navbar-brand topnav" })
+                    </div>
+                    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
+                            <li>@Html.ActionLink("Search", "Index", "CarSearch")</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            @* first row *@
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-striped table-bordered dataTable no-footer table-condensed"  id="cartable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Make
+                                </th>
+                                <th>
+                                    Model
+                                </th>
+                                <th>
+                                    Trim
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                                <th>
+                                    Body
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.make)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.model_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.model_trim)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.model_year)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.body_style)
+                                    </td>
+
+                                    <td>
+
+                                        @Html.ActionLink("Select","Details", new { id = item.id })
+                                       @*code for future ajax modal*@
+                                        @*<a data-ajax="true" data-target="#carModal" data-toggle="modal" href="/CarSearch1/Details/@item.id">Select</a>*@
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @* end of first row *@
+            @Html.Partial("_Footer")
+        </div>
+        </div>
+    </div>
+
+ @*using this for a future ajax modal*@
+<!--  Car Modal -->
+<div id="carModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Selected Car</h4>
+            </div>
+            <div class="modal-body">
+                @*@Html.Partial("_Details")*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@section Scripts 
+    {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var year, make, model, trim;
+            $("#year").change(function () {
+                $("#make").empty();
+                $("#trim").empty();
+                $("#model").empty();
+                $("#form").submit();
+            });
+            var year, make, model, trim;
+            $("#make").change(function () {
+
+                $("#trim").empty();
+                $("#model").empty();
+                $("#form").submit();
+            });
+
+            var year, make, model, trim;
+            $("#model").change(function () {
+
+                $("#trim").empty();
+                $("#form").submit();
+            });
+
+            var year, make, model, trim;
+            $("#trim").change(function () {
+
+                $("#form").submit();
+            });
+
+
+
+
+
+
+
+        });
+
+        $(document).ready(function () {
+
+            $("#cartable").DataTable({
+                
+            });
+        });
+    </script>
+    
+    }
